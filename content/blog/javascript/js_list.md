@@ -131,9 +131,45 @@ let bindx = onlyMethod.bind(obj)
 -call stack?
 -network 오류 상황 어떻게 확인?
 
-## 클로저
+## 4. 클로저
 
-4. 클로저 -클로저 정의한다면? -클로저를 활용한 구현경험? -커링이란? -고차함수란?
+### 4.1 클로저 정의한다면?
+- 함수가 함수를 반환할 때 자신을 둘러싼 환경 정보를 가지고 반환되는 걸 의미한다
+- 자바스크립트에서 모든 함수는 함수가 생성된 곳의 렉시컬 환경을 기억해 `[[Environment]]`라 불리는 숨김 프로퍼티를 갖는데 여기에 함수가 만들어진 곳의 주변 정보가 저장된다. 
+- 이를 렉시컬 스코프로 정보를 가져온다고도 말한다.
+
+### 4.2 클로저 구현?
+```js
+function calc(){
+  let number = 0;
+  function increase(){
+    number += 1;
+    return increase;
+  }
+}
+let newCalc = calc();
+newCalc();
+```
+- react 훅 api인 useState가 클로저로 구현되어있다.
+```js
+let _value;
+
+export useState(initialValue){
+  if(_value === undefined){
+    _value = initialValue;
+  }
+  const setValue = newValue => {
+    _value = newValue;
+  }
+  return [_value, setValue]
+}
+```
+- 리액트 훅에서는 useState를 이용해 생성된 상태를 접근하고 유지하기 위해 useState 바깥에 상태를 저장한다. 따라서 useState 함수의 실행 장소가 어디가 되었든 클로저를 통해 바깥에 저장된 상태에 접근해 useState 두번째 배열값인 setState 함수로 상태를 변경한다.
+
+https://velog.io/@ggong/useState-Hook%EA%B3%BC-%ED%81%B4%EB%A1%9C%EC%A0%80
+
+### 4.3 커링이란?
+### 4.4 고차함수란?
 
 ## FP
 
@@ -172,3 +208,6 @@ let bindx = onlyMethod.bind(obj)
 - generator란?
 - es next 관심있는 문법은?
 - 정규표현식은 언제 써봤나?
+
+## 과제 구현 방식 설명
+
