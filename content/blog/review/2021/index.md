@@ -2,7 +2,7 @@
 title: 2021 회고
 date: 2022-01-04
 tags: ["review"]
-publish: true
+publish: false
 image: "../review.jpg"
 ---
 
