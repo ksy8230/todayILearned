@@ -90,16 +90,16 @@
 </ul>
 <h2 id="자바스크립트의-9가지-코드-트릭" style="position:relative;">자바스크립트의 9가지 코드 트릭<a href="#%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EC%9D%98-9%EA%B0%80%EC%A7%80-%EC%BD%94%EB%93%9C-%ED%8A%B8%EB%A6%AD" aria-label="자바스크립트의 9가지 코드 트릭 permalink" class="custom-class after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
 <ol>
-<li>구조 분해 할당을 이용한 변수 swap</li>
+<li>구조 분해 할당을 이용한 변수 swap<br>
+ES6의 구조 분해 할당 문법을 사용하여 두 변수를 swap 할 수 있다.</li>
 </ol>
-<p>ES6의 구조 분해 할당 문법을 사용하여 두 변수를 swap 할 수 있다.</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">let a = 5, b = 10;
 [a, b] = [b, a];
 console.log(a, b); // 10 5</code></pre></div>
 <ol start="2">
-<li>배열 생성으로 루프 제거하기</li>
+<li>배열 생성으로 루프 제거하기<br>
+보통 단순히 범위 루프를 돌고 싶다면 다음과 같이 코드를 작성한다.</li>
 </ol>
-<p>보통 단순히 범위 루프를 돌고 싶다면 다음과 같이 코드를 작성한다.</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">let sum = 0;
 for (let i = 5; i &lt; 10; i += 1) {
     sum += i;
@@ -109,25 +109,167 @@ for (let i = 5; i &lt; 10; i += 1) {
     .reduce((acc, cur) => acc + cur, 0);</code></pre></div>
 <h2 id="배열" style="position:relative;">배열<a href="#%EB%B0%B0%EC%97%B4" aria-label="배열 permalink" class="custom-class after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
 <ol>
-<li>자료구조 중 선형구조에 해당한다.</li>
-<li>일반적으로는 변수에 배열이 할당될 때 고정된 크기를 가지지만 스크립트 언어에서는 동적으로 크기가 증감되도록 만들어져있다.</li>
-<li>원하는 원소의 index 번호를 알면 그 번호로 원소에 접근할 수 있다.</li>
-</ol>
+<li>
+<p>자료구조 중 선형구조에 해당한다.</p>
+</li>
+<li>
+<p>일반적으로는 변수에 배열이 할당될 때 고정된 크기를 가지지만 스크립트 언어에서는 동적으로 크기가 증감되도록 만들어져있다.</p>
+</li>
+<li>
+<p>원하는 원소의 index 번호를 알면 그 번호로 원소에 접근할 수 있다.</p>
 <ul>
-<li>index는 number의 형태가 아니어도 가능하다. key값으로 false를 넣으면 자동으로 string 타입(arr[‘false’])으로 변환되어 배열에 접근한다. 이는 자바스크립트에서 배열은 객체 타입으로 취급되기 때문이다.</li>
+<li>3-1. index는 number의 형태가 아니어도 가능하다. key값으로 false를 넣으면 자동으로 string 타입(arr[‘false’])으로 변환되어 배열에 접근한다. 이는 자바스크립트에서 배열은 객체 타입으로 취급되기 때문이다.</li>
+<li>3-2. 배열에 값을 추가, 삭제할 때 값들이 하나씩 밀리기 때문에 빅오(n)만큼의 시간복잡도가 소요된다.</li>
+<li>3-3. 배열에 값을 탐색할 때는 값들이 순차적으로 이루어져있기 때문에 해당 index로 바로 접근해 빅오(1)만큼의 시간복잡도가 소요된다.</li>
 </ul>
-<ol start="4">
-<li>원소를 삭제하면 해당 index의 위치는 비어진다.</li>
-</ol>
-<p>이런 특징들 때문에 배열에 추가, 삭제하는 행위는 빅오(n)만큼의 시간복잡도가 소요된다.
-따라서 추가와 삭제가 반복되는 로직이라면 배열 사용을 권장하지 않는다. 배열은 index 값으로 접근하는 경우, 즉 탐색을 할 때 유리하다.</p>
-<ol start="5">
-<li>배열을 다양한 값으로 초기값 넣는법</li>
+</li>
+<li>
+<p>원소를 삭제하면 해당 index의 위치는 비어진다.</p>
+</li>
+<li>
+<p>배열을 다양한 값으로 초기값 넣는법</p>
+</li>
 </ol>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">const arr1 = new Array(5).fill(0); // [0,0,0,0,0]
-const arr2 = Array.from(Array(5), (value, index) => { return value + 1; }); // [1,2,3,4,5]</code></pre></div></section></article><div class="blog-table"><div class="table-of-contents"><ul>
+const arr2 = Array.from(Array(5), (value, index) => { return value + 1; }); // [1,2,3,4,5]</code></pre></div>
+<h2 id="연결리스트" style="position:relative;">연결리스트<a href="#%EC%97%B0%EA%B2%B0%EB%A6%AC%EC%8A%A4%ED%8A%B8" aria-label="연결리스트 permalink" class="custom-class after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<ol>
+<li>
+<p>자료구조 중 선형구조에 해당한다.</p>
+</li>
+<li>
+<p>연결리스트는 요소들로 이루어져있고 각 요소들은 데이터영역, 포인터영역으로 구성된다.</p>
+<ul>
+<li>2-1. 리스트의 요소들은 포인터로 연결되어있다.</li>
+<li>2-2. 리스트의 요소를 추가, 삭제할 때 포인터를 사용하기 때문에 빅오(1)만큼의 시간복잡도가 소요된다.</li>
+<li>2-3. 리스트의 요소를 탐색할 때는 요소들이 순차적으로 이루어져있지 않기 때문에 모든 요소를 순회하여 빅오(n)만큼의 시간복잡도가 소요된다.</li>
+</ul>
+</li>
+<li>
+<p>연결리스트의 형태를 코드로 살펴보면 아래와 같다.</p>
+</li>
+</ol>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token keyword">class</span> <span class="token class-name">Node</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">value</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>value <span class="token operator">=</span> value
+    <span class="token keyword">this</span><span class="token punctuation">.</span>next <span class="token operator">=</span> <span class="token keyword">null</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>요소에 해당하는 개별 노드는 데이터영역인 value와 포인터 정보 영역인 next를 갖는다.</p>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token keyword">class</span> <span class="token class-name">SinglyLinkedList</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>head <span class="token operator">=</span> <span class="token keyword">null</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>tail <span class="token operator">=</span> <span class="token keyword">null</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token operator">...</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">insert</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token operator">...</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">remove</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token operator">...</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">append</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token operator">...</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">display</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token operator">...</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>개별노드로 이루어진 연결리스트는 탐색(find), 추가(insert), 삭제(remove)의 메서드를 갖는다.<br>
+또한 연결리스트에 append, display를 추가해 연결리스트의 값을 할당하고 화면에 보여주도록 해 보자.</p>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token keyword">class</span> <span class="token class-name">SinglyLinkedList</span> <span class="token punctuation">{</span>
+  <span class="token operator">...</span>
+  <span class="token function">find</span><span class="token punctuation">(</span><span class="token parameter">value</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> currentNode <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>head
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>currentNode<span class="token punctuation">.</span>value <span class="token operator">!==</span> value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      currentNode <span class="token operator">=</span> currentNode<span class="token punctuation">.</span>next
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> currentNode
+  <span class="token punctuation">}</span>
+  <span class="token operator">...</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p><strong>탐색</strong></p>
+<p>요소를 찾기 위해 현재 요소를 헤드에 지정한다. 그리고 현재 요소의 값이 찾는 값과 같으면 리턴하고, 그렇지 않으면 while문으로 돌며 현재 요소의 값을 다음 요소의 값으로 지정해 탐색한다.</p>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token keyword">class</span> <span class="token class-name">SinglyLinkedList</span> <span class="token punctuation">{</span>
+  <span class="token operator">...</span>
+  <span class="token function">insert</span><span class="token punctuation">(</span><span class="token parameter">node<span class="token punctuation">,</span> newValue</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> newNode <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Node</span><span class="token punctuation">(</span>newValue<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    newNode<span class="token punctuation">.</span>next <span class="token operator">=</span> node<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+    node<span class="token punctuation">.</span>next <span class="token operator">=</span> newNode<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token operator">...</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p><strong>추가</strong><br>
+ex. [1,2,3] 리스트에서 2위치에 4를 추가하겠다라고 했을 때 결과는 [1,2,4,3]이 되어야한다.</p>
+<p>요소(4)를 추가하기 위해 추가될 위치 정보(2)와 추가할 노드 정보(4)를 파라미터로 넘겨준다.<br>
+새로 추가될 노드(4)는 추가할 노드 정보(4)를 기반으로 생성하고, 새로운 노드의 포인터 값(null)은 추가될 위치에 있던 노드의 포인터(2)로 바꾼다.<br>
+추가될 위치(2)에 있던 노드의 포인터는 새로 추가될 노드(4)를 가리키도록 지정한다.</p>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token keyword">class</span> <span class="token class-name">SinglyLinkedList</span> <span class="token punctuation">{</span>
+  <span class="token operator">...</span>
+  <span class="token function">remove</span><span class="token punctuation">(</span><span class="token parameter">value</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>head<span class="token punctuation">.</span>value <span class="token operator">===</span> value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>head <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>head<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token keyword">let</span> prevNode <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>head<span class="token punctuation">;</span>
+      <span class="token keyword">while</span> <span class="token punctuation">(</span>prevNode<span class="token punctuation">.</span>next<span class="token punctuation">.</span>value <span class="token operator">!==</span> value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        prevNode <span class="token operator">=</span> prevNode<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>prevNode<span class="token punctuation">.</span>next <span class="token operator">!==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        prevNode<span class="token punctuation">.</span>next <span class="token operator">=</span> prevNode<span class="token punctuation">.</span>next<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token operator">...</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p><strong>삭제</strong>
+ex. [1,2,3] 리스트에서 2를 삭제한다면 결과는 [1,3]이 되어야한다.</p>
+<p>우선 삭제할 노드의 포인터 값을 헤드부터 설정해 삭제할 대상을 while문으로 찾는다.<br>
+삭제할 노드의 포인터 값이 존재하면 이 값을 다음의 다음 포인터로 연결해 중간 요소 정보를 없앤다.<br>
+해당 삭제 작업은 추가와 달리 삭제될 위치 정보를 파라미터로 넘겨주지 않아서 빅오(n) 시간복잡도를 갖는다.</p>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token keyword">class</span> <span class="token class-name">SinglyLinkedList</span> <span class="token punctuation">{</span>
+  <span class="token operator">...</span>
+  <span class="token function">append</span><span class="token punctuation">(</span><span class="token parameter">newValue</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> newNode <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Node</span><span class="token punctuation">(</span>newValue<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>head <span class="token operator">===</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>head <span class="token operator">=</span> newNode<span class="token punctuation">;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>tail <span class="token operator">=</span> newNode<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>tail<span class="token punctuation">.</span>next <span class="token operator">=</span> newNode<span class="token punctuation">;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>tail <span class="token operator">=</span> newNode<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token operator">...</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p><strong>할당</strong>
+연결리스트 요소를 할당하기 위헤 새로운 노드를 파라미터 기반의 값으로 생성한다.<br>
+만일 연결리스트에 헤드값이 없으면 새로운 노드가 헤드이자 테일이 된다.<br>
+연결리스트에 헤드값이 있으면 테일의 포인터를 새로운 노드로 지정하고 테일에 새로운 노드를 할당한다.</p>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token keyword">class</span> <span class="token class-name">SinglyLinkedList</span> <span class="token punctuation">{</span>
+  <span class="token operator">...</span>
+  <span class="token function">display</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> currentNode <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>head<span class="token punctuation">;</span>
+    <span class="token keyword">let</span> displayString <span class="token operator">=</span> <span class="token string">"["</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>currentNode <span class="token operator">!==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      displayString <span class="token operator">+=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>currentNode<span class="token punctuation">.</span>value<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">, </span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+      currentNode <span class="token operator">=</span> currentNode<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    displayString <span class="token operator">=</span> displayString<span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> displayString<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    displayString <span class="token operator">+=</span> <span class="token string">"]"</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>displayString<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+  <span class="token operator">...</span>
+<span class="token punctuation">}</span></code></pre></div>
+<h2 id="배열-vs-연결리스트" style="position:relative;">배열 vs 연결리스트<a href="#%EB%B0%B0%EC%97%B4-vs-%EC%97%B0%EA%B2%B0%EB%A6%AC%EC%8A%A4%ED%8A%B8" aria-label="배열 vs 연결리스트 permalink" class="custom-class after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>이 둘의 가장 큰 특징은 메모리 구성 방식이 다르다는 점이다.
+배열에 할당된 메모리는 순차적으로 이루어져있지만 연결리스트에 할당된 메모리들은 연속적이지 않고 퍼져있다.</p></section></article><div class="blog-table"><div class="table-of-contents"><ul>
 <li><a href="#%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0%EC%9D%98-%EC%A2%85%EB%A5%98">자료구조의 종류</a></li>
 <li><a href="#%EC%8B%9C%EA%B0%84-%EB%B3%B5%EC%9E%A1%EB%8F%84">시간 복잡도</a></li>
 <li><a href="#%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EC%9D%98-9%EA%B0%80%EC%A7%80-%EC%BD%94%EB%93%9C-%ED%8A%B8%EB%A6%AD">자바스크립트의 9가지 코드 트릭</a></li>
 <li><a href="#%EB%B0%B0%EC%97%B4">배열</a></li>
-</ul></div></div></div><hr/><div id="comment"></div></main><footer>© 2021, COPYRIGHT ALL RIGHT KSY8230<a href="https://www.gatsbyjs.com"></a></footer></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/algorithm/시작하기전에/";window.___webpackCompilationHash="ea1f3c4773a5848febc0";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-afa68794cf9a69af341a.js"],"app":["/app-c154fc21242975beb867.js"],"component---src-pages-404-js":["/component---src-pages-404-js-0c66d2172856118fd382.js"],"component---src-pages-index-js":["/component---src-pages-index-js-ae6b18ca2fa1bb73ebc3.js"],"component---src-pages-using-typescript-tsx":["/component---src-pages-using-typescript-tsx-e500a6fb88c5bce65ce3.js"],"component---src-templates-blog-post-js":["/component---src-templates-blog-post-js-3eca40859e081028ea64.js"]};/*]]>*/</script><script src="/todayILearned/polyfill-afa68794cf9a69af341a.js" nomodule=""></script><script src="/todayILearned/app-c154fc21242975beb867.js" async=""></script><script src="/todayILearned/framework-21cdc04874840f845a1f.js" async=""></script><script src="/todayILearned/webpack-runtime-5ef15c4c61c54be2a2d4.js" async=""></script></body></html>
+<li><a href="#%EC%97%B0%EA%B2%B0%EB%A6%AC%EC%8A%A4%ED%8A%B8">연결리스트</a></li>
+<li><a href="#%EB%B0%B0%EC%97%B4-vs-%EC%97%B0%EA%B2%B0%EB%A6%AC%EC%8A%A4%ED%8A%B8">배열 vs 연결리스트</a></li>
+</ul></div></div></div><hr/><div id="comment"></div></main><footer>© 2021, COPYRIGHT ALL RIGHT KSY8230<a href="https://www.gatsbyjs.com"></a></footer></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/algorithm/시작하기전에/";window.___webpackCompilationHash="d338af3bc7d4e1f6966a";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-afa68794cf9a69af341a.js"],"app":["/app-c154fc21242975beb867.js"],"component---src-pages-404-js":["/component---src-pages-404-js-0c66d2172856118fd382.js"],"component---src-pages-index-js":["/component---src-pages-index-js-ae6b18ca2fa1bb73ebc3.js"],"component---src-pages-using-typescript-tsx":["/component---src-pages-using-typescript-tsx-e500a6fb88c5bce65ce3.js"],"component---src-templates-blog-post-js":["/component---src-templates-blog-post-js-3eca40859e081028ea64.js"]};/*]]>*/</script><script src="/todayILearned/polyfill-afa68794cf9a69af341a.js" nomodule=""></script><script src="/todayILearned/app-c154fc21242975beb867.js" async=""></script><script src="/todayILearned/framework-21cdc04874840f845a1f.js" async=""></script><script src="/todayILearned/webpack-runtime-5ef15c4c61c54be2a2d4.js" async=""></script></body></html>

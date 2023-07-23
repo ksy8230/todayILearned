@@ -1,0 +1,393 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 4.25.0"/><meta data-react-helmet="true" name="description" content="리액트 패키지 구조 (v16.12.0) react 코어 react에서 사용되는 컴포넌트와 관련된 패키지 React element를 만드는 와 개발자에게 다른 패키지의 모듈을 제공하는 중간 다리 역할 renderer 호스트와 react를 연결하는 역할을 하는 패키지 react-dom…"/><meta data-react-helmet="true" property="og:title" content="react 면접 주제"/><meta data-react-helmet="true" property="og:description" content="리액트 패키지 구조 (v16.12.0) react 코어 react에서 사용되는 컴포넌트와 관련된 패키지 React element를 만드는 와 개발자에게 다른 패키지의 모듈을 제공하는 중간 다리 역할 renderer 호스트와 react를 연결하는 역할을 하는 패키지 react-dom…"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:creator" content="-"/><meta data-react-helmet="true" name="twitter:title" content="react 면접 주제"/><meta data-react-helmet="true" name="twitter:description" content="리액트 패키지 구조 (v16.12.0) react 코어 react에서 사용되는 컴포넌트와 관련된 패키지 React element를 만드는 와 개발자에게 다른 패키지의 모듈을 제공하는 중간 다리 역할 renderer 호스트와 react를 연결하는 역할을 하는 패키지 react-dom…"/><meta data-react-helmet="true" name="google-site-verification" content="M0Wa_Sh6Ip9woLirwOec9KhuVfJmogHmiDoSA0nZEc0"/><style data-href="/todayILearned/styles.1051625ceedf3014857d.css" data-identity="gatsby-global-css">@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:100;src:local("Montserrat Thin "),local("Montserrat-Thin"),url(/todayILearned/static/montserrat-latin-100-8d7d79679b70dbe27172b6460e7a7910.woff2) format("woff2"),url(/todayILearned/static/montserrat-latin-100-ec38980a9e0119a379e2a9b3dbb1901a.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:100;src:local("Montserrat Thin italic"),local("Montserrat-Thinitalic"),url(/todayILearned/static/montserrat-latin-100italic-e279051046ba1286706adc886cf1c96b.woff2) format("woff2"),url(/todayILearned/static/montserrat-latin-100italic-3b325a3173c8207435cd1b76e19bf501.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:200;src:local("Montserrat Extra Light "),local("Montserrat-Extra Light"),url(/todayILearned/static/montserrat-latin-200-9d266fbbfa6cab7009bd56003b1eeb67.woff2) format("woff2"),url(/todayILearned/static/montserrat-latin-200-2d8ba08717110d27122e54c34b8a5798.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:200;src:local("Montserrat Extra Light italic"),local("Montserrat-Extra Lightitalic"),url(/todayILearned/static/montserrat-latin-200italic-6e5b3756583bb2263eb062eae992735e.woff2) format("woff2"),url(/todayILearned/static/montserrat-latin-200italic-a0d6f343e4b536c582926255367a57da.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:300;src:local("Montserrat Light "),local("Montserrat-Light"),url(/todayILearned/static/montserrat-latin-300-00b3e893aab5a8fd632d6342eb72551a.woff2) format("woff2"),url(/todayILearned/static/montserrat-latin-300-ea303695ceab35f17e7d062f30e0173b.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:300;src:local("Montserrat Light italic"),local("Montserrat-Lightitalic"),url(/todayILearned/static/montserrat-latin-300italic-56f34ea368f6aedf89583d444bbcb227.woff2) format("woff2"),url(/todayILearned/static/montserrat-latin-300italic-54b0bf2c8c4c12ffafd803be2466a790.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:400;src:local("Montserrat Regular "),local("Montserrat-Regular"),url(/todayILearned/static/montserrat-latin-400-b71748ae4f80ec8c014def4c5fa8688b.woff2) format("woff2"),url(/todayILearned/static/montserrat-latin-400-0659a9f4e90db5cf51b50d005bff1e41.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:400;src:local("Montserrat Regular italic"),local("Montserrat-Regularitalic"),url(/todayILearned/static/montserrat-latin-400italic-6eed6b4cbb809c6efc7aa7ddad6dbe3e.woff2) format("woff2"),url(/todayILearned/static/montserrat-latin-400italic-7583622cfde30ae49086d18447ab28e7.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:500;src:local("Montserrat Medium "),local("Montserrat-Medium"),url(/todayILearned/static/montserrat-latin-500-091b209546e16313fd4f4fc36090c757.woff2) format("woff2"),url(/todayILearned/static/montserrat-latin-500-edd311588712a96bbf435fad264fff62.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:500;src:local("Montserrat Medium italic"),local("Montserrat-Mediumitalic"),url(/todayILearned/static/montserrat-latin-500italic-c90ced68b46050061d1a41842d6dfb43.woff2) format("woff2"),url(/todayILearned/static/montserrat-latin-500italic-5146cbfe02b1deea5dffea27a5f2f998.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:600;src:local("Montserrat SemiBold "),local("Montserrat-SemiBold"),url(/todayILearned/static/montserrat-latin-600-0480d2f8a71f38db8633b84d8722e0c2.woff2) format("woff2"),url(/todayILearned/static/montserrat-latin-600-b77863a375260a05dd13f86a1cee598f.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:600;src:local("Montserrat SemiBold italic"),local("Montserrat-SemiBolditalic"),url(/todayILearned/static/montserrat-latin-600italic-cf46ffb11f3a60d7df0567f8851a1d00.woff2) format("woff2"),url(/todayILearned/static/montserrat-latin-600italic-c4fcfeeb057724724097167e57bd7801.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:700;src:local("Montserrat Bold "),local("Montserrat-Bold"),url(/todayILearned/static/montserrat-latin-700-7dbcc8a5ea2289d83f657c25b4be6193.woff2) format("woff2"),url(/todayILearned/static/montserrat-latin-700-99271a835e1cae8c76ef8bba99a8cc4e.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:700;src:local("Montserrat Bold italic"),local("Montserrat-Bolditalic"),url(/todayILearned/static/montserrat-latin-700italic-c41ad6bdb4bd504a843d546d0a47958d.woff2) format("woff2"),url(/todayILearned/static/montserrat-latin-700italic-6779372f04095051c62ed36bc1dcc142.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:800;src:local("Montserrat ExtraBold "),local("Montserrat-ExtraBold"),url(/todayILearned/static/montserrat-latin-800-db9a3e0ba7eaea32e5f55328ace6cf23.woff2) format("woff2"),url(/todayILearned/static/montserrat-latin-800-4e3c615967a2360f5db87d2f0fd2456f.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:800;src:local("Montserrat ExtraBold italic"),local("Montserrat-ExtraBolditalic"),url(/todayILearned/static/montserrat-latin-800italic-bf45bfa14805969eda318973947bc42b.woff2) format("woff2"),url(/todayILearned/static/montserrat-latin-800italic-fe82abb0bcede51bf724254878e0c374.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:900;src:local("Montserrat Black "),local("Montserrat-Black"),url(/todayILearned/static/montserrat-latin-900-e66c7edc609e24bacbb705175669d814.woff2) format("woff2"),url(/todayILearned/static/montserrat-latin-900-8211f418baeb8ec880b80ba3c682f957.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:900;src:local("Montserrat Black italic"),local("Montserrat-Blackitalic"),url(/todayILearned/static/montserrat-latin-900italic-4454c775e48152c1a72510ceed3603e2.woff2) format("woff2"),url(/todayILearned/static/montserrat-latin-900italic-efcaa0f6a82ee0640b83a0916e6e8d68.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:normal;font-weight:300;src:local("Merriweather Light "),local("Merriweather-Light"),url(/todayILearned/static/merriweather-latin-300-fc117160c69a8ea0851b26dd14748ee4.woff2) format("woff2"),url(/todayILearned/static/merriweather-latin-300-58b18067ebbd21fda77b67e73c241d3b.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:italic;font-weight:300;src:local("Merriweather Light italic"),local("Merriweather-Lightitalic"),url(/todayILearned/static/merriweather-latin-300italic-fe29961474f8dbf77c0aa7b9a629e4bc.woff2) format("woff2"),url(/todayILearned/static/merriweather-latin-300italic-23c3f1f88683618a4fb8d265d33d383a.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:normal;font-weight:400;src:local("Merriweather Regular "),local("Merriweather-Regular"),url(/todayILearned/static/merriweather-latin-400-d9479e8023bef9cbd9bf8d6eabd6bf36.woff2) format("woff2"),url(/todayILearned/static/merriweather-latin-400-040426f99ff6e00b86506452e0d1f10b.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:italic;font-weight:400;src:local("Merriweather Regular italic"),local("Merriweather-Regularitalic"),url(/todayILearned/static/merriweather-latin-400italic-2de7bfeaf08fb03d4315d49947f062f7.woff2) format("woff2"),url(/todayILearned/static/merriweather-latin-400italic-79db67aca65f5285964ab332bd65f451.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:normal;font-weight:700;src:local("Merriweather Bold "),local("Merriweather-Bold"),url(/todayILearned/static/merriweather-latin-700-4b08e01d805fa35d7bf777f1b24314ae.woff2) format("woff2"),url(/todayILearned/static/merriweather-latin-700-22fb8afba4ab1f093b6ef9e28a9b6e92.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:italic;font-weight:700;src:local("Merriweather Bold italic"),local("Merriweather-Bolditalic"),url(/todayILearned/static/merriweather-latin-700italic-cd92541b177652fffb6e3b952f1c33f1.woff2) format("woff2"),url(/todayILearned/static/merriweather-latin-700italic-f87f3d87cea0dd0979bfc8ac9ea90243.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:normal;font-weight:900;src:local("Merriweather Black "),local("Merriweather-Black"),url(/todayILearned/static/merriweather-latin-900-f813fc6a4bee46eda5224ac7ebf1b7be.woff2) format("woff2"),url(/todayILearned/static/merriweather-latin-900-5d4e42cb44410674acd99153d57df032.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:italic;font-weight:900;src:local("Merriweather Black italic"),local("Merriweather-Blackitalic"),url(/todayILearned/static/merriweather-latin-900italic-b7901d85486871c1779c0e93ddd85656.woff2) format("woff2"),url(/todayILearned/static/merriweather-latin-900italic-9647f9fdab98756989a8a5550eb205c3.woff) format("woff")}
+
+
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */html{-webkit-text-size-adjust:100%;line-height:1.15}body{margin:0}a{text-decoration:none}.blog-post header .date{font-size:var(--fontSize-0)}.blog-post ol,.blog-post ul{margin-left:var(--spacing-6)}.blog-post blockquote li,.blog-post blockquote ol,.blog-post blockquote ul{margin:0}.blog-post blockquote ol li,.blog-post blockquote ul li{margin-bottom:.75rem}.blog-post ol li:last-child,.blog-post ul li:last-child{margin-bottom:0}.blog-post a{color:var(--color-link);text-decoration:underline}.blog-post :not(pre)>code[class*=language-]{background:#f9f1f3;color:#ff3860;padding:0 .5rem;text-shadow:none}.blog-post blockquote{background-color:#f0f2f5;font-size:16px;font-style:normal;margin:var(--spacing-8) var(--spacing-0) var(--spacing-8) var(--spacing-0);padding:1.25rem}.blog-post table th{background-color:#7078d1;color:#fff}.blog-post table th,td{border:4px solid #fff;padding:.25rem 0}.blog-post table td{background-color:#f7f7f7}.blog-post strong{color:var(--color-strong);font-weight:500}.blog-post .token.operator{background:transparent}.blog-post details{cursor:pointer;margin-bottom:var(--spacing-8)}.blog-post details summary{margin-bottom:var(--spacing-4)}.blog-post .token.operator{background:none}::selection{background:rgba(112,120,209,.2);color:#dd0700}main{display:block}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-family:var(--font-body)!important;font-size:1em}pre[class*=language-]{padding:1.5em 0 1.5em 3.8em!important}.line-numbers .line-numbers-rows{top:1.5em!important;width:2.5rem!important}.line-numbers-rows>span:before{padding-right:0!important;text-align:center!important}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;-webkit-text-decoration:underline dotted;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-family:var(--font-body)!important;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none;max-width:100%;width:auto}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}[hidden]{display:none}::-webkit-scrollbar{width:8px}::-webkit-scrollbar-thumb{background-color:var(--color-primary);border-radius:10px;height:17%}::-webkit-scrollbar-track{background-color:#eee}:root{--maxWidth-none:"none";--maxWidth-xs:20rem;--maxWidth-sm:24rem;--maxWidth-md:28rem;--maxWidth-lg:32rem;--maxWidth-xl:36rem;--maxWidth-2xl:42rem;--maxWidth-3xl:48rem;--maxWidth-4xl:60rem;--maxWidth-5xl:67.5rem;--maxWidth-full:"100%";--maxWidth-wrapper:var(--maxWidth-2xl);--spacing-px:"1px";--spacing-0:0;--spacing-1:0.25rem;--spacing-2:0.5rem;--spacing-3:0.75rem;--spacing-4:1rem;--spacing-5:1.25rem;--spacing-6:1.5rem;--spacing-8:2rem;--spacing-10:2.5rem;--spacing-12:3rem;--spacing-16:4rem;--spacing-20:5rem;--spacing-24:6rem;--spacing-32:8rem;--fontFamily-sans:"Noto Sans KR",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";--fontFamily-serif:"Apple SD Gothic Neo",Roboto,"Noto Sans KR",NanumGothic,"Malgun Gothic",sans-serif;--font-body:var(--fontFamily-sans);--font-heading:var(--fontFamily-sans);--fontWeight-normal:400;--fontWeight-medium:500;--fontWeight-semibold:600;--fontWeight-bold:700;--fontWeight-extrabold:800;--fontWeight-black:900;--fontSize-root:16px;--lineHeight-none:1;--lineHeight-tight:1.1;--lineHeight-normal:1.5;--lineHeight-relaxed:1.625;--lineHeight-high:1.725;--fontSize-small:0.75rem;--fontSize-0:0.833rem;--fontSize-1:1rem;--fontSize-2:1.2rem;--fontSize-3:1.44rem;--fontSize-4:1.728rem;--fontSize-5:2.074rem;--fontSize-6:2.488rem;--fontSize-7:2.986rem;--color-primary:#005b99;--color-strong:#0c60c8;--color-link:#448ce4;--color-text:#2e353f;--color-text-light:#4f5969;--color-heading:#1a202c;--color-heading-black:#000;--color-accent:#d1dce5}*,:after,:before{box-sizing:border-box}html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-size:var(--fontSize-root);line-height:var(--lineHeight-normal)}body{color:var(--color-text);font-family:var(--font-body);font-size:var(--fontSize-1)}footer{padding:var(--spacing-6) var(--spacing-0)}hr{background:var(--color-accent);border:0;height:1px}h1,h2,h3,h4,h5,h6{font-family:var(--font-heading);letter-spacing:-.025em;line-height:var(--lineHeight-tight);margin-bottom:var(--spacing-6);margin-top:var(--spacing-12)}h2,h3,h4,h5,h6{color:var(--color-heading);font-weight:var(--fontWeight-bold)}h1{color:var(--color-heading-black);font-size:var(--fontSize-5);font-weight:var(--fontWeight-black)}h2{font-size:var(--fontSize-4)}h3{font-size:var(--fontSize-3)}h4{font-size:var(--fontSize-2)}h5{font-size:var(--fontSize-1)}h6{font-size:var(--fontSize-0)}h1>a,h2>a,h3>a,h4>a,h5>a,h6>a{color:inherit;text-decoration:none}p{--baseline-multiplier:0.179;--x-height-multiplier:0.35;line-height:var(--lineHeight-high);margin:var(--spacing-0) var(--spacing-0) var(--spacing-8) var(--spacing-0)}ol,p,ul{padding:var(--spacing-0)}ol,ul{list-style-image:none;list-style-position:outside;margin-bottom:var(--spacing-8);margin-left:var(--spacing-0);margin-right:var(--spacing-0)}ol li,ul li{padding-left:var(--spacing-0)}li>p,ol li,ul li{margin-bottom:calc(var(--spacing-8)/2)}li :last-child{margin-bottom:var(--spacing-0)}li>ul{margin-left:var(--spacing-8);margin-top:calc(var(--spacing-8)/2)}blockquote{border-left:var(--spacing-1) solid var(--color-primary);color:var(--color-text-light);font-size:var(--fontSize-2);font-style:italic;margin-bottom:var(--spacing-8);margin-left:calc(var(--spacing-6)*-1);margin-right:var(--spacing-8);padding:var(--spacing-0) var(--spacing-0) var(--spacing-0) var(--spacing-6)}blockquote>:last-child{margin-bottom:var(--spacing-0)}blockquote>ol,blockquote>ul{list-style-position:inside}table{border-collapse:collapse;border-spacing:.25rem;margin-bottom:var(--spacing-8);width:100%}table thead tr th{border-bottom:1px solid var(--color-accent)}a{color:var(--color-primary)}a:focus,a:hover{text-decoration:none}.global-wrapper{margin:61px auto 0;max-width:var(--maxWidth-5xl);padding:var(--spacing-5) var(--spacing-5)}.global-header{background-color:#fff;border-bottom:1px solid #ddd;height:60px;left:0;line-height:60px;margin:0;padding:0 5%;position:fixed;top:0;width:100%;z-index:10}.global-header a,[aria-current]:not([aria-current=false]){color:#7078d1!important;font-weight:700}.left-navigation{background-color:#fdfdfd;border-right:1px solid #ddd;height:100vh;left:0;position:fixed;top:0;width:15%}.left-navigation .home{padding:var(--spacing-4)}.left-navigation .sidebar-links{padding:0 var(--spacing-4)}.left-navigation .sidebar-links li{list-style:none;margin-bottom:var(--spacing-0)}.left-navigation .sidebar-links>li{cursor:pointer;margin-bottom:var(--spacing-5)}.left-navigation .sidebar-links>li.open section ul{max-height:500px;overflow-y:auto}.left-navigation .sidebar-links>li section ul{max-height:0;overflow:hidden;transition:all .3s}.left-navigation .sidebar-links li section p{margin:var(--spacing-0) var(--spacing-0) var(--spacing-0) var(--spacing-0)}.left-navigation .sidebar-links li section ul{margin-left:var(--spacing-1)}.left-navigation .sidebar-links li section ul li a{color:#555;font-size:12px;text-decoration:none}.contents-wrap{margin-top:var(--spacing-4)}.post-list-item{margin-bottom:var(--spacing-8);margin-top:var(--spacing-8)}.post-list-item p{margin-bottom:var(--spacing-0)}.post-list-item h2{color:var(--color-primary);font-size:var(--fontSize-4);margin-bottom:var(--spacing-2);margin-top:var(--spacing-0)}.post-list-item header{margin-bottom:var(--spacing-4)}.header-link-home{font-family:var(--font-heading);font-size:var(--fontSize-2);font-weight:var(--fontWeight-bold);text-decoration:none}.bio{align-items:center;display:flex;margin-bottom:var(--spacing-8)}.bio p,.bio-avatar{margin-bottom:var(--spacing-0)}.bio-avatar{border-radius:100%;margin-right:var(--spacing-4);min-width:50px}.blog-post header h1{margin:var(--spacing-0) var(--spacing-0) var(--spacing-4) var(--spacing-0)}.blog-post header p{font-family:var(--font-heading);font-size:var(--fontSize-2)}.blog-post-nav ul{margin:var(--spacing-0)}.gatsby-highlight{margin-bottom:var(--spacing-8)}.gatsby-highlight pre{border-radius:10px}.blog-post-container{display:flex}.blog-post-container .blog-post{flex-basis:74%;flex-grow:0;max-width:74%}.blog-post-container .blog-table{flex-basis:26%;flex-grow:0;font-size:.95rem;max-width:26%}.table-of-contents{position:-webkit-sticky;position:sticky;top:75px}.table-of-contents a{border-radius:6px;color:var(--color-text);color:rgba(59,69,78,.7);display:block;letter-spacing:-.045rem;overflow:hidden;padding:4px 8px;text-decoration:none;transition:all .25s ease 0s}.table-of-contents a:hover{background-color:#cfd8dc}.table-of-contents li,.table-of-contents p{margin-bottom:var(--spacing-0)}.table-of-contents ul{list-style:none;margin-bottom:32px;margin-left:10%}.table-of-contents ul ul{border-left:2px solid #dddddf;margin:0 0 0 20px;padding:0}.table-of-contents ul ul li{font-size:.85rem;margin-bottom:0;margin-left:10px}.utterances{max-width:100%!important}@media (max-width:48rem){.blog-post-container .blog-post{flex-basis:100%;max-width:100%}.blog-table{display:none}}@media (max-width:42rem){blockquote{margin-left:var(--spacing-0);padding:var(--spacing-0) var(--spacing-0) var(--spacing-0) var(--spacing-4)}ol,ul{list-style-position:inside}}code[class*=language-],pre[class*=language-]{color:#000;text-shadow:0 1px #fff}code[class*=language-] ::selection,code[class*=language-]::selection,pre[class*=language-] ::selection,pre[class*=language-]::selection{background:#b3d4fc;text-shadow:none}@media print{code[class*=language-],pre[class*=language-]{text-shadow:none}}:not(pre)>code[class*=language-],pre[class*=language-]{background:#f5f2f0}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#708090}.token.punctuation{color:#999}.token.boolean,.token.constant,.token.deleted,.token.number,.token.property,.token.symbol,.token.tag{color:#905}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string{color:#690}.language-css .token.string,.style .token.string,.token.entity,.token.operator,.token.url{background:hsla(0,0%,100%,.5);color:#9a6e3a}.token.atrule,.token.attr-value,.token.keyword{color:#07a}.token.class-name,.token.function{color:#dd4a68}.token.important,.token.regex,.token.variable{color:#e90}code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#f8f8f2;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;hyphens:none;line-height:1.5;-o-tab-size:4;tab-size:4;text-align:left;text-shadow:0 1px rgba(0,0,0,.3);white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{border-radius:.3em;margin:.5em 0;overflow:auto;padding:1em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#272822}:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em;white-space:normal}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#8292a2}.token.punctuation{color:#f8f8f2}.token.namespace{opacity:.7}.token.constant,.token.deleted,.token.property,.token.symbol,.token.tag{color:#f92672}.token.boolean,.token.number{color:#ae81ff}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string{color:#a6e22e}.language-css .token.string,.style .token.string,.token.entity,.token.operator,.token.url,.token.variable{color:#f8f8f2}.token.atrule,.token.attr-value,.token.class-name,.token.function{color:#e6db74}.token.keyword{color:#66d9ef}.token.important,.token.regex{color:#fd971f}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}pre[class*=language-].line-numbers{counter-reset:linenumber;padding-left:3.8em;position:relative}pre[class*=language-].line-numbers>code{position:relative;white-space:inherit}.line-numbers .line-numbers-rows{border-right:1px solid #999;font-size:100%;left:-3.8em;letter-spacing:-1px;pointer-events:none;position:absolute;top:0;-webkit-user-select:none;user-select:none;width:3em}.line-numbers-rows>span{counter-increment:linenumber;display:block}.line-numbers-rows>span:before{color:#999;content:counter(linenumber);display:block;padding-right:.8em;text-align:right}.home-module--container--0aba5{margin:3rem auto;max-width:600px}.home-module--section--91350{flex:1 1}.home-module--row--87db9{display:flex}.home-module--postsWrap--2f1f3{display:flex;flex-wrap:wrap;justify-content:flex-start}.home-module--post--e8da4{border:1px solid #ddd;height:auto;margin:0 .5% 1%;min-height:15rem;min-width:30%;width:32.33%}.home-module--tagsWrap--58296{display:flex;flex-wrap:wrap;margin:0 .5% .5rem}.home-module--post_tag--05e00{border:1px solid #ddd;border-radius:3px;cursor:pointer;display:block;font-size:.75rem;font-weight:400;margin-right:.5rem;padding:.25rem .5rem;transition:all .4s}.home-module--post_tag_active--53d55{background-color:var(--color-primary);border:1px solid transparent;color:#fff;font-weight:400}.home-module--post_list_tag--07435{font-size:var(--fontSize-small);margin-right:.5rem}.home-module--post_tag_count--e99db{margin-left:.25rem}.home-module--thumbnail--49edb{background-color:#ddd;min-height:7rem}.home-module--post_content--160ba{padding:.5rem}.home-module--post_content--160ba p{font-weight:600;letter-spacing:-.7px;margin-bottom:var(--spacing-0);min-height:5rem}.home-module--post_content_title--7a38a{font-size:14px}@media (max-width:60rem){.home-module--post--e8da4{width:100%}}</style><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><style type="text/css">
+    .custom-class.before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateX(-100%);
+      padding-right: 4px;
+    }
+    .custom-class.after {
+      display: inline-block;
+      padding-left: 4px;
+    }
+    h1 .custom-class svg,
+    h2 .custom-class svg,
+    h3 .custom-class svg,
+    h4 .custom-class svg,
+    h5 .custom-class svg,
+    h6 .custom-class svg {
+      visibility: hidden;
+    }
+    h1:hover .custom-class svg,
+    h2:hover .custom-class svg,
+    h3:hover .custom-class svg,
+    h4:hover .custom-class svg,
+    h5:hover .custom-class svg,
+    h6:hover .custom-class svg,
+    h1 .custom-class:focus svg,
+    h2 .custom-class:focus svg,
+    h3 .custom-class:focus svg,
+    h4 .custom-class:focus svg,
+    h5 .custom-class:focus svg,
+    h6 .custom-class:focus svg {
+      visibility: visible;
+    }
+  </style><script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+      var hash = window.decodeURI(location.hash.replace('#', ''))
+      if (hash !== '') {
+        var element = document.getElementById(hash)
+        if (element) {
+          var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+          var clientTop = document.documentElement.clientTop || document.body.clientTop || 0
+          var offset = element.getBoundingClientRect().top + scrollTop - clientTop
+          // Wait for the browser to finish rendering before scrolling.
+          setTimeout((function() {
+            window.scrollTo(0, offset - 100)
+          }), 0)
+        }
+      }
+    })
+  </script><title data-react-helmet="true">react 면접 주제 | ksy8230.github.io</title><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="true"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="true"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&amp;display=swap"/><link rel="alternate" type="application/rss+xml" title="Gatsby Starter Blog RSS Feed" href="/todayILearned/rss.xml"/><link rel="icon" href="/todayILearned/favicon-32x32.png?v=4a9773549091c227cd2eb82ccd9c5e3a" type="image/png"/><link rel="manifest" href="/todayILearned/manifest.webmanifest" crossorigin="anonymous"/><link rel="apple-touch-icon" sizes="48x48" href="/todayILearned/icons/icon-48x48.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="72x72" href="/todayILearned/icons/icon-72x72.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="96x96" href="/todayILearned/icons/icon-96x96.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="144x144" href="/todayILearned/icons/icon-144x144.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="192x192" href="/todayILearned/icons/icon-192x192.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="256x256" href="/todayILearned/icons/icon-256x256.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="384x384" href="/todayILearned/icons/icon-384x384.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="512x512" href="/todayILearned/icons/icon-512x512.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="sitemap" type="application/xml" href="/todayILearned/sitemap.xml"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="global-wrapper" data-is-root-path="false"><header class="global-header"><a href="/todayILearned/">Today I Learn</a></header><div class="contents-wrap"><main><div class="blog-post-container"><article class="blog-post" itemscope="" itemType="http://schema.org/Article"><header><h1 itemProp="headline">react 면접 주제</h1><p class="date">2022-01-11</p></header><section itemProp="articleBody"><h2 id="리액트-패키지-구조-v16120" style="position:relative;">리액트 패키지 구조 (v16.12.0)<a href="#%EB%A6%AC%EC%95%A1%ED%8A%B8-%ED%8C%A8%ED%82%A4%EC%A7%80-%EA%B5%AC%EC%A1%B0-v16120" aria-label="리액트 패키지 구조 v16120 permalink" class="custom-class after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<ol>
+<li>
+<p>react 코어</p>
+<ul>
+<li>react에서 사용되는 컴포넌트와 관련된 패키지</li>
+<li>React element를 만드는 <code class="language-text">createElement()</code>와 개발자에게 다른 패키지의 모듈을 제공하는 중간 다리 역할</li>
+</ul>
+</li>
+<li>
+<p>renderer</p>
+<ul>
+<li>호스트와 react를 연결하는 역할을 하는 패키지</li>
+<li>react-dom</li>
+</ul>
+</li>
+<li>
+<p>reconciler</p>
+<ul>
+<li>react 동작의 핵심 패키지</li>
+<li>VDOM과 관련</li>
+<li>v15 이전이 스택 기반이었다면 v16 이후부터는 <code class="language-text">fiber 구조</code> 도입</li>
+</ul>
+</li>
+<li>
+<p>scheduler</p>
+<ul>
+<li>리액트의 비동기 실행기</li>
+</ul>
+</li>
+<li>
+<p>event</p>
+<ul>
+<li>개발자가 event를 사용하기 전 리액트에서 추가적인 제어를 하기 위해 호스트 event를 wrapping하여 작동된다</li>
+</ul>
+</li>
+</ol>
+<h3 id="51-리액트-패키지-구동-순서" style="position:relative;">5.1 리액트 패키지 구동 순서<a href="#51-%EB%A6%AC%EC%95%A1%ED%8A%B8-%ED%8C%A8%ED%82%A4%EC%A7%80-%EA%B5%AC%EB%8F%99-%EC%88%9C%EC%84%9C" aria-label="51 리액트 패키지 구동 순서 permalink" class="custom-class after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">(1) 컴포넌트 호출은 reconciler 패키지에서 한다.
+(2) 이후 VDOM이 전후 관계를 비교 후
+(3) rederer 패키지에서 실제 DOM에 마운트한다.</code></pre></div>
+<h3 id="52-관련-용어-정리" style="position:relative;">5.2 관련 용어 정리<a href="#52-%EA%B4%80%EB%A0%A8-%EC%9A%A9%EC%96%B4-%EC%A0%95%EB%A6%AC" aria-label="52 관련 용어 정리 permalink" class="custom-class after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<ul>
+<li>
+<p>reactElement : 컴포넌트의 정보를 담은 객체로, 컴포넌트가 반환하는 것이 React Element이다.</p>
+</li>
+<li>
+<p>fiber : VDOM의 노드 객체로, 이 객체는 VDOM에서 React Element를 활용하기 위해 React Element를 확장시킨 객체이다.</p>
+<ul>
+<li>fiber라는 객체를 통해 컴포넌트의 상태값, 훅 api, 리액트 라이프 사이클의 구현이 가능해진다.</li>
+</ul>
+</li>
+</ul>
+<h3 id="53-vdom" style="position:relative;">5.3 VDOM<a href="#53-vdom" aria-label="53 vdom permalink" class="custom-class after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<ul>
+<li>VDOM은 fiber(=VDOM 노드)객체로 이루어져있다.</li>
+<li>하나의 노드로 <code class="language-text">현재 트리</code>와 <code class="language-text">업데이트될 트리</code>를 관리한다.</li>
+<li>돔이 실제로 마운트된 현재 트리와 VDOM에서 재조정 중인 업데이트 준비 트리로 나뉜다. 이 업데이트 준비 트리는 리액트 라이프사이클에서 <code class="language-text">commit phase</code>라는 시점에 현재 트리로 관리된다.</li>
+<li>업데이트될 트리는 현재 트리를 자기 복제해 참조하는 식으로 만들어진다.</li>
+<li>fiber(=VDOM 노드)구조는 자식을 child로 참조하는데 자식들 중 첫번째 자식만 참조한다.
+<ul>
+<li>나머지 자식들은 첫번째 자식의 sibling 형태로 참조한다.</li>
+</ul>
+</li>
+</ul>
+<h3 id="54-react-element" style="position:relative;">5.4 React Element<a href="#54-react-element" aria-label="54 react element permalink" class="custom-class after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<ul>
+<li>jsx는 바벨을 통해 React Element라는 컴포넌트 정보를 담고 있는 객체로 변환된다.</li>
+</ul>
+<h3 id="55-side-effect" style="position:relative;">5.5 Side Effect<a href="#55-side-effect" aria-label="55 side effect permalink" class="custom-class after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<ul>
+<li>VDOM에 변경점을 만들어내는 작업</li>
+<li>리액트에서 사용되는 side effect tag들이 존재</li>
+<li>fiber(=VDOM 노드)에 특정 태그가 붙으면 리액트 내부에서 effect로 취급돼 변경될 리스트의 상위에 위치한다.</li>
+<li>부모 자식 컴포넌트 각각에 태그가 붙으면 자식 fiber 순서대로 리스트가 나열돼 리액트 라이프 사이클에서 <code class="language-text">commit phase</code>라는 시점에 소비된다.</li>
+</ul>
+<h2 id="리액트-훅-동작-원리" style="position:relative;">리액트 훅 동작 원리<a href="#%EB%A6%AC%EC%95%A1%ED%8A%B8-%ED%9B%85-%EB%8F%99%EC%9E%91-%EC%9B%90%EB%A6%AC" aria-label="리액트 훅 동작 원리 permalink" class="custom-class after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<h3 id="61-리액트-훅-구현체" style="position:relative;">6.1 리액트 훅 구현체<a href="#61-%EB%A6%AC%EC%95%A1%ED%8A%B8-%ED%9B%85-%EA%B5%AC%ED%98%84%EC%B2%B4" aria-label="61 리액트 훅 구현체 permalink" class="custom-class after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token comment">// react > ReactCurrentDispatcher.js</span>
+<span class="token keyword">const</span> ReactCurrentDispatcher <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">current</span><span class="token operator">:</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> ReactCurrentDispatcher</code></pre></div>
+<p>리액트 훅 구현체는 current 값만 갖고 있는 빈 객체이다. 이 빈 객체가 활용되기 위해서는
+VDOM 역할을 하는 reconciler 패키지에서 훅이 주입되어야한다. 그런데 바로 주입되진 않고 shared 패키지라는 공통 폴더 역할을 하는 곳을 통로를 이용해 주입된다.</p>
+<p>reconciler -> shared/ReactSharedInternal -> react/ReactSharedInternal -> react/ReactCurrentDispatcher -> react/ReactHooks -> react -> 개발자</p>
+<h3 id="62-리액트-훅-구현체-주입" style="position:relative;">6.2 리액트 훅 구현체 주입<a href="#62-%EB%A6%AC%EC%95%A1%ED%8A%B8-%ED%9B%85-%EA%B5%AC%ED%98%84%EC%B2%B4-%EC%A3%BC%EC%9E%85" aria-label="62 리액트 훅 구현체 주입 permalink" class="custom-class after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token comment">// reconciler > ReactFiberHooks.js</span>
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">renderWithHooks</span><span class="token punctuation">(</span>
+  <span class="token parameter"><span class="token literal-property property">current</span><span class="token operator">:</span> Fiber<span class="token punctuation">,</span>
+  <span class="token literal-property property">workInProgress</span><span class="token operator">:</span> Fiber<span class="token punctuation">,</span>
+  <span class="token literal-property property">Component</span><span class="token operator">:</span> any<span class="token punctuation">,</span>
+  <span class="token literal-property property">props</span><span class="token operator">:</span> any<span class="token punctuation">,</span>
+  <span class="token literal-property property">refOrContext</span><span class="token operator">:</span> any<span class="token punctuation">,</span>
+  <span class="token literal-property property">nextRenderExpirationTime</span><span class="token operator">:</span> ExpirationTime</span>
+<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">/*...*/</span>
+  currentlyRenderingFiber <span class="token operator">=</span> workInProgress <span class="token comment">// 현재 작업 중인 fiber를 전역으로 잡아둠</span>
+  nextCurrentHook <span class="token operator">=</span> current <span class="token operator">!==</span> <span class="token keyword">null</span> <span class="token operator">?</span> current<span class="token punctuation">.</span>memoizedState <span class="token operator">:</span> <span class="token keyword">null</span>
+
+  ReactCurrentDispatcher<span class="token punctuation">.</span>current <span class="token operator">=</span>
+    nextCurrentHook <span class="token operator">===</span> <span class="token keyword">null</span> <span class="token operator">?</span> HooksDispatcherOnMount <span class="token operator">:</span> HooksDispatcherOnUpdate
+
+  <span class="token keyword">let</span> children <span class="token operator">=</span> <span class="token function">Component</span><span class="token punctuation">(</span>props<span class="token punctuation">,</span> refOrContext<span class="token punctuation">)</span>
+
+  <span class="token comment">/*컴포넌트 재호출 로직..*/</span>
+
+  <span class="token keyword">const</span> renderedWork <span class="token operator">=</span> currentlyRenderingFiber
+  renderedWork<span class="token punctuation">.</span>memoizedState <span class="token operator">=</span> firstWorkInProgressHook
+
+  ReactCurrentDispatcher<span class="token punctuation">.</span>current <span class="token operator">=</span> ContextOnlyDispatcher
+
+  currentlyRenderingFiber <span class="token operator">=</span> <span class="token keyword">null</span>
+  <span class="token comment">/*...*/</span>
+<span class="token punctuation">}</span></code></pre></div>
+<ul>
+<li>리액트 훅을 이용해 상태가 변경되어 컴포넌트가 호출되어야 할 때 훅리스트가 생성된다. 훅리스트라는 변수는 fiber(=VDOM 노드)에 memoizedState로 저장되어 훅이 컴포넌트와 매핑되도록 해 준다.</li>
+<li>fiber(=VDOM 노드)에 memoizedState가 null인 경우 마운트 상태가 아니고, null이 아닌 경우 마운트 상태로 확인해 그에 맞게 훅 구현체에 변경된 상태 정보가 주입된다.</li>
+</ul>
+<h3 id="63-리액트-훅은-어떻게-생성되는가" style="position:relative;">6.3 리액트 훅은 어떻게 생성되는가<a href="#63-%EB%A6%AC%EC%95%A1%ED%8A%B8-%ED%9B%85%EC%9D%80-%EC%96%B4%EB%96%BB%EA%B2%8C-%EC%83%9D%EC%84%B1%EB%90%98%EB%8A%94%EA%B0%80" aria-label="63 리액트 훅은 어떻게 생성되는가 permalink" class="custom-class after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<ul>
+<li>훅 구현체에는 마운트용 구현체와 업데이트용 구현체가 존재한다.</li>
+<li>처음 컴포넌트가 마운트될 때 실행되는 훅의 경우 마운트 구현체로 객체가 생성이 된다.</li>
+<li>하나의 컴포넌트에서 훅을 이용해 여러개의 상태 변경이 일어난 경우 업데이트 객체로 생성이 되어 훅의 큐에 저장된다.</li>
+<li>이후 컴포넌트가 리-랜더링이될 때 큐에 저장되어있던 훅 객체들이 차례로 실행돼 최종 상태값들을 만든다.</li>
+</ul>
+<h3 id="64-리액트-훅은-어떻게-상태를-변경하고-컴포넌트를-리랜더링하는가" style="position:relative;">6.4 리액트 훅은 어떻게 상태를 변경하고 컴포넌트를 리랜더링하는가<a href="#64-%EB%A6%AC%EC%95%A1%ED%8A%B8-%ED%9B%85%EC%9D%80-%EC%96%B4%EB%96%BB%EA%B2%8C-%EC%83%81%ED%83%9C%EB%A5%BC-%EB%B3%80%EA%B2%BD%ED%95%98%EA%B3%A0-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8%EB%A5%BC-%EB%A6%AC%EB%9E%9C%EB%8D%94%EB%A7%81%ED%95%98%EB%8A%94%EA%B0%80" aria-label="64 리액트 훅은 어떻게 상태를 변경하고 컴포넌트를 리랜더링하는가 permalink" class="custom-class after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>reconciler 패키지에 존재하는 <strong>dispatchAction 함수를 이용해 훅 상태를 업데이트한다</strong></p>
+<ol>
+<li>업데이트된 정보가 담긴 훅 객체 생성</li>
+<li>훅 객체를 훅 큐에 저장</li>
+</ol>
+<!-- 3. 불필요한 렌더링 최적화 -->
+<ol start="3">
+<li>컴포넌트 변경을 돔에 적용하는 작업을 스케줄링한다
+<ul>
+<li>작업 스케쥴링이 진행될 때 해당 fiber(=VDOM 노드)에 expirationTime이 새겨진다. (중복 스케줄링 방지)</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>dispatchAction 함수는 컴포넌트를 재호출하는 작업을 딱 한 번만 스케줄한다. 최종 상태 정보들이 훅 객체에 저장되었다가 <code class="language-text">render phase</code>에서 한 번에 소비된다.</li>
+<li>컴포넌트 재호출 시점에 추가로 발생한 setState는 이전과 묶여서 1번으로 실행된다.</li>
+</ul>
+<h2 id="리액트를-왜-사용하나요" style="position:relative;">리액트를 왜 사용하나요<a href="#%EB%A6%AC%EC%95%A1%ED%8A%B8%EB%A5%BC-%EC%99%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EB%82%98%EC%9A%94" aria-label="리액트를 왜 사용하나요 permalink" class="custom-class after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<ol>
+<li>컴포넌트 기반의 화면 구성<br>
+리액트는 화면의 한 부분을 <code class="language-text">컴포넌트 단위로 나뉘어 관리</code>할 수 있다. 이런 특징은 기능에 따라 코드를 나눠 개발하기 편하고 반복되는 부분을 재사용할 수 있게 해 준다.</li>
+<li>SPA 개발 가능<br>
+<code class="language-text">화면의 필요한 부분만 업데이트</code>되어 <code class="language-text">더 좋은 사용자 경험</code>을 가능하게 해 주고 <code class="language-text">렌더링에서 좋은 효율</code>을 가진다.</li>
+<li>넓은 생태계<br>
+개발에 필요한 다양한 라이브러리가 리액트로 활용되어있어 웹 개발하기 수월하다.</li>
+</ol>
+<h2 id="virtual-dom에-대해서-아나요" style="position:relative;">Virtual Dom에 대해서 아나요<a href="#virtual-dom%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C-%EC%95%84%EB%82%98%EC%9A%94" aria-label="virtual dom에 대해서 아나요 permalink" class="custom-class after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>DOM은 html문서에 접근하기 위한 인터페이스이다. DOM은 프로그래밍 언어가 문서에 접근할 수 있는 방법을 제공해 구조를 변경하고 스타일을 적용할 수 있게 한다.
+리액트는 돔에 직접 접근하지 않고 가상돔이라는 DOM의 사본을 만들어 실제 돔을 변경한다.<br>
+전체 ui를 가상돔에 리렌더링하고, 이전 내용과 현재 내용을 비교해 바뀐 부분만 실제 돔에 적용한다.<br>
+가상돔을 사용한다고 해서 돔 업데이트가 무조건 빠른 건 아니지만 UI의 업데이트 처리가 간결하다는 장점이 있다.</p>
+<ul>
+<li>VDOM은 fiber(=VDOM 노드)객체로 이루어져있다.</li>
+<li>하나의 노드로 <code class="language-text">현재 트리</code>와 <code class="language-text">업데이트될 트리</code>를 관리한다.</li>
+<li>돔이 실제로 마운트된 현재 트리와 VDOM에서 재조정 중인 업데이트 준비 트리로 나뉜다. 이 업데이트 준비 트리는 리액트 라이프사이클에서 <code class="language-text">commit phase</code>라는 시점에 현재 트리로 관리된다.</li>
+<li>업데이트될 트리는 현재 트리를 자기 복제해 참조하는 식으로 만들어진다.</li>
+<li>fiber(=VDOM 노드)구조는 자식을 child로 참조하는데 자식들 중 첫번째 자식만 참조한다.
+<ul>
+<li>나머지 자식들은 첫번째 자식의 sibling 형태로 참조한다.</li>
+</ul>
+</li>
+</ul>
+<h2 id="다시-setstate의-경우-동기로-동작하나요-비동기로-동작하나요" style="position:relative;">(다시) setState의 경우 동기로 동작하나요 비동기로 동작하나요?<a href="#%EB%8B%A4%EC%8B%9C-setstate%EC%9D%98-%EA%B2%BD%EC%9A%B0-%EB%8F%99%EA%B8%B0%EB%A1%9C-%EB%8F%99%EC%9E%91%ED%95%98%EB%82%98%EC%9A%94-%EB%B9%84%EB%8F%99%EA%B8%B0%EB%A1%9C-%EB%8F%99%EC%9E%91%ED%95%98%EB%82%98%EC%9A%94" aria-label="다시 setstate의 경우 동기로 동작하나요 비동기로 동작하나요 permalink" class="custom-class after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>비동기로 동작하는 훅 함수이다.
+하나의 컴포넌트에서 훅을 이용해 여러개의 상태 변경이 일어났을 때 훅 객체들이 훅 큐에 저장된다.<br>
+이후 컴포넌트가 리-렌더링이 될 때 큐에 있던 훅 객체들이 차례로 실행돼 최종 상태값을 만든다.</p>
+<h2 id="다시-setstate가-비동기-동작을-취했을-때-얻을-수-있는-이점은-무엇인가요" style="position:relative;">(다시) setState가 비동기 동작을 취했을 때 얻을 수 있는 이점은 무엇인가요<a href="#%EB%8B%A4%EC%8B%9C-setstate%EA%B0%80-%EB%B9%84%EB%8F%99%EA%B8%B0-%EB%8F%99%EC%9E%91%EC%9D%84-%EC%B7%A8%ED%96%88%EC%9D%84-%EB%95%8C-%EC%96%BB%EC%9D%84-%EC%88%98-%EC%9E%88%EB%8A%94-%EC%9D%B4%EC%A0%90%EC%9D%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80%EC%9A%94" aria-label="다시 setstate가 비동기 동작을 취했을 때 얻을 수 있는 이점은 무엇인가요 permalink" class="custom-class after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>setState가 비동기 동작을 하기 때문에 변경된 값들을 모아 한번에 업데이트가 가능해 렌더링 횟수를 줄일 수 있다.</p>
+<h2 id="usememo와-usecallback의-차이가-뭔가요" style="position:relative;">useMemo와 useCallback의 차이가 뭔가요<a href="#usememo%EC%99%80-usecallback%EC%9D%98-%EC%B0%A8%EC%9D%B4%EA%B0%80-%EB%AD%94%EA%B0%80%EC%9A%94" aria-label="usememo와 usecallback의 차이가 뭔가요 permalink" class="custom-class after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>둘다 기존에 수행한 연산 값을 메모리에 저장해놓고 필요할 때 재활용하는 함수들이지만,<br>
+useMemo는 기억된 값을, useCallback은 기억된 함수를 반환한다.</p>
+<h2 id="리덕스의-기본-원칙은" style="position:relative;">리덕스의 기본 원칙은<a href="#%EB%A6%AC%EB%8D%95%EC%8A%A4%EC%9D%98-%EA%B8%B0%EB%B3%B8-%EC%9B%90%EC%B9%99%EC%9D%80" aria-label="리덕스의 기본 원칙은 permalink" class="custom-class after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>리덕스는 상태관리 라이브러리이다. store라는 변수를 이용해 전역에 두고 싶은 상태들을 저장한다.
+리덕스의 기본 원칙은</p>
+<ol>
+<li>리듀서와 같은 순수함수에 의해 변경되어야 한다</li>
+<li>상태들은 읽기 전용이어야 한다</li>
+<li>전역으로 관리될 상태들은 하나의 저장소 안에 객체 트리 형태로 저장되어야한다</li>
+</ol>
+<h2 id="리덕스를-사용하신다고-하셨는데-flux-패턴에-대해서-알고-있나요" style="position:relative;">리덕스를 사용하신다고 하셨는데, Flux 패턴에 대해서 알고 있나요<a href="#%EB%A6%AC%EB%8D%95%EC%8A%A4%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EC%8B%A0%EB%8B%A4%EA%B3%A0-%ED%95%98%EC%85%A8%EB%8A%94%EB%8D%B0-flux-%ED%8C%A8%ED%84%B4%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C-%EC%95%8C%EA%B3%A0-%EC%9E%88%EB%82%98%EC%9A%94" aria-label="리덕스를 사용하신다고 하셨는데 flux 패턴에 대해서 알고 있나요 permalink" class="custom-class after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/todayILearned/static/6d7ef1f58879f3fe02d67bbf64f4cb1c/d8817/flux.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 55.69620253164557%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABYlAAAWJQFJUiTwAAABlElEQVQoz42TbU/bMBSF8/9/BR+KtE3r3hCwgjbGJgaoESgwaWVAaZK2dCFNk6ap48TOMyXNtGoiY1c6sn11fe65R7bBP6Ioiv/KrYfxFFme51iWRdc0CcOoymldNJIbTUTlWtTrfB4RhUFJ9XhdjUaFf3dWGr47CdZtyNmPGfdT8WhdeTbWO6x3ypUmjDMSkTMJBK8+D3l3NOb5gYt5FSCkIlpkzJMVdHWvaB5ZZppEqGqfSsVlP8K6jTi7Dhn7K4W6rl0sFar2tVKoVEFeQdeEmqWUxEJSVL4VtX+/8cc/rUulKanMViOXcg/OPQ6tBzrdCWM/Yxj1OLX3Md2PXE5OSJMZ8tsHxEUHcb6NHPUqQt/z2NvdZf99h52tLUbDIcYslrz+MmLn5J4XnxyubEHPMznsv+F4sM1XZ49g+pP09CWi2yY9ahFfmyQK7u5cnrVavG232dzYoH9zg5HluvJk5C9xvYRlqllkMyZzBy92mSYTtJLoYIjybdTDAJ3MVt4KgWPbFezBgEUcNz/sp6Lpx/wCAQNMr17Go3sAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="FLUX 패턴"
+        title="FLUX 패턴"
+        src="/todayILearned/static/6d7ef1f58879f3fe02d67bbf64f4cb1c/f058b/flux.png"
+        srcset="/todayILearned/static/6d7ef1f58879f3fe02d67bbf64f4cb1c/c26ae/flux.png 158w,
+/todayILearned/static/6d7ef1f58879f3fe02d67bbf64f4cb1c/6bdcf/flux.png 315w,
+/todayILearned/static/6d7ef1f58879f3fe02d67bbf64f4cb1c/f058b/flux.png 630w,
+/todayILearned/static/6d7ef1f58879f3fe02d67bbf64f4cb1c/40601/flux.png 945w,
+/todayILearned/static/6d7ef1f58879f3fe02d67bbf64f4cb1c/d8817/flux.png 1238w"
+        sizes="(max-width: 630px) 100vw, 630px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+        decoding="async"
+      />
+  </a>
+    </span>
+Flux는 단방향 데이터 흐름을 강조하는 패턴이다.<br>
+사용자의 행위라는 액션을 디스패처가 통제하고 디스패처가 스토어를 업데이트하면 변경된 스토어를 기준으로 뷰가 업데이트된다.</p>
+<p><strong>MVC패턴</strong></p>
+<blockquote>
+<p>액션이 일어나 컨트롤러를 통해 모델이 변화하고 이 변화가 뷰에 반영</p>
+</blockquote>
+<h2 id="리듀서-내부에서-불변성을-지키는-이유는-전개-연산자의-단점을-해결할-수-있는-방법" style="position:relative;">리듀서 내부에서 불변성을 지키는 이유는? 전개 연산자의 단점을 해결할 수 있는 방법<a href="#%EB%A6%AC%EB%93%80%EC%84%9C-%EB%82%B4%EB%B6%80%EC%97%90%EC%84%9C-%EB%B6%88%EB%B3%80%EC%84%B1%EC%9D%84-%EC%A7%80%ED%82%A4%EB%8A%94-%EC%9D%B4%EC%9C%A0%EB%8A%94-%EC%A0%84%EA%B0%9C-%EC%97%B0%EC%82%B0%EC%9E%90%EC%9D%98-%EB%8B%A8%EC%A0%90%EC%9D%84-%ED%95%B4%EA%B2%B0%ED%95%A0-%EC%88%98-%EC%9E%88%EB%8A%94-%EB%B0%A9%EB%B2%95" aria-label="리듀서 내부에서 불변성을 지키는 이유는 전개 연산자의 단점을 해결할 수 있는 방법 permalink" class="custom-class after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>리듀서는 현재 상태와 액션 객체를 받아서 새로운 상태를 반환해 주는 함수이다.<br>
+<code class="language-text">변경 전과 변경 후의 상태를 비교해 히스토리를 관리</code>하기 위해서 불변성을 지켜야합니다.</p>
+<h2 id="리듀서-내부에서-불변성을-유지하기-위해-얕은-복사를-사용하나요-깊은-복사를-사용하나요" style="position:relative;">리듀서 내부에서 불변성을 유지하기 위해 얕은 복사를 사용하나요 깊은 복사를 사용하나요<a href="#%EB%A6%AC%EB%93%80%EC%84%9C-%EB%82%B4%EB%B6%80%EC%97%90%EC%84%9C-%EB%B6%88%EB%B3%80%EC%84%B1%EC%9D%84-%EC%9C%A0%EC%A7%80%ED%95%98%EA%B8%B0-%EC%9C%84%ED%95%B4-%EC%96%95%EC%9D%80-%EB%B3%B5%EC%82%AC%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%82%98%EC%9A%94-%EA%B9%8A%EC%9D%80-%EB%B3%B5%EC%82%AC%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%82%98%EC%9A%94" aria-label="리듀서 내부에서 불변성을 유지하기 위해 얕은 복사를 사용하나요 깊은 복사를 사용하나요 permalink" class="custom-class after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>리듀서가 불변성을 지키기 위해 객체를 복사할 때 <code class="language-text">스프레드 연산자를 활용하는 경우 얕은 복사</code>가 일어난다.
+객체의 깊이가 깊어 <code class="language-text">코드가 길어지는 경우 간결하기 위해 immer와 같은 라이브러리를 활용</code>하는 걸로 알고 있다.</p>
+<blockquote>
+<p>얕은 복사 : 객체의 주소값을 복사
+깊은 복사 : 객체의 실제 값을 복사</p>
+</blockquote>
+<h2 id="본인이-생각하는-리덕스-thunk-와-saga의-차이가-뭔가요" style="position:relative;">본인이 생각하는 리덕스 thunk 와 saga의 차이가 뭔가요<a href="#%EB%B3%B8%EC%9D%B8%EC%9D%B4-%EC%83%9D%EA%B0%81%ED%95%98%EB%8A%94-%EB%A6%AC%EB%8D%95%EC%8A%A4-thunk-%EC%99%80-saga%EC%9D%98-%EC%B0%A8%EC%9D%B4%EA%B0%80-%EB%AD%94%EA%B0%80%EC%9A%94" aria-label="본인이 생각하는 리덕스 thunk 와 saga의 차이가 뭔가요 permalink" class="custom-class after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>리덕스 썽크는 리덕스에서 비동기 작업을 처리할 때 사용하는 미들웨어로 액션 객체가 아닌 <code class="language-text">함수를 디스패치할 수 있다</code>.
+리덕스 사가는 액션을 모니터링하고 있다가 <code class="language-text">특정 액션이 발생했을 때 미리 정해둔 로직이 이루어지는 액션 리스너</code>이다.</p>
+<h2 id="리덕스-vs-리덕스toolkit-차이" style="position:relative;">리덕스 vs 리덕스toolkit 차이<a href="#%EB%A6%AC%EB%8D%95%EC%8A%A4-vs-%EB%A6%AC%EB%8D%95%EC%8A%A4toolkit-%EC%B0%A8%EC%9D%B4" aria-label="리덕스 vs 리덕스toolkit 차이 permalink" class="custom-class after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>기존의 리덕스를 사용하기위해 액션, 액션타입, 액션별 리듀서를 각각 정의해야했다면<br>
+리덕스 툴킷은 <code class="language-text">createSlice</code> 함수를 이용해 액션과 리듀서를 한번에 정의할 수 있다.
+설치해야할 패키지 수가 줄고 설정이 간단하고 전반적인 코드량이 줄어 현업에서 상태관리도구로 선택해 사용 중이다.</p>
+<h2 id="더-react-18-신기능-알아보기" style="position:relative;">(더) react 18 신기능 알아보기<a href="#%EB%8D%94-react-18-%EC%8B%A0%EA%B8%B0%EB%8A%A5-%EC%95%8C%EC%95%84%EB%B3%B4%EA%B8%B0" aria-label="더 react 18 신기능 알아보기 permalink" class="custom-class after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p><code class="language-text">userId</code>
+고유한 id를 생성해 주는 훅이다. 고유한 값을 갖는 컴포넌트를 표현할 때 유용하다.</p>
+<p><code class="language-text">startTransition</code>, <code class="language-text">useTransition</code>
+상태 업데이트의 우선순위를 나눠줄 수 있는 훅이다. 디바운싱이나 쓰로틀링 효과를 가져갈 수 있다.</p>
+<blockquote>
+<p>디바운싱 : 연이어 호출되는 함수들 중 가장 마지막 함수만 호출하는 것
+쓰로틀링 : 함수를 일정 간격으로 한번만 호출시키는 것</p>
+</blockquote>
+<p><code class="language-text">useDeferredValue</code>
+급하지 않은 부분의 렌더링을 지연할 수 있는 훅이다.
+useTransition는 코드에 접근이 가능한데 우선순위를 낮춰야하는 경우에 사용하고<br>
+useDeferredValue는 어떤 이유로 코드 접근이 불가능한데 상태 변경의 우선순위를 낮춰야할 때 사용한다.</p>
+<p><code class="language-text">useSyncExternalStore</code><br>
+스토어에 대한 업데이트를 강제로 동기화 하여 외부 스토어가 concurrent read를 지원할 수 있도록 하는 새로운 훅이다.<br>
+concurrent 렌더링이 등장하면서 렌더링이 렌더링을 잠시 중지할 수 있게 되면서 발생하는 tearing(시각적 비일치) 현상을 방지하기 위해 나왔다.</p>
+<p><a href="https://velog.io/@jay/useSyncExternalStore">https://velog.io/@jay/useSyncExternalStore</a>
+<a href="https://yceffort.kr/2022/04/react-18-changelog">https://yceffort.kr/2022/04/react-18-changelog</a></p>
+<h2 id="리액트-사용시에-부수효과로-인해-생기는-문제점이-있다면" style="position:relative;">리액트 사용시에 부수효과로 인해 생기는 문제점이 있다면<a href="#%EB%A6%AC%EC%95%A1%ED%8A%B8-%EC%82%AC%EC%9A%A9%EC%8B%9C%EC%97%90-%EB%B6%80%EC%88%98%ED%9A%A8%EA%B3%BC%EB%A1%9C-%EC%9D%B8%ED%95%B4-%EC%83%9D%EA%B8%B0%EB%8A%94-%EB%AC%B8%EC%A0%9C%EC%A0%90%EC%9D%B4-%EC%9E%88%EB%8B%A4%EB%A9%B4" aria-label="리액트 사용시에 부수효과로 인해 생기는 문제점이 있다면 permalink" class="custom-class after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<h2 id="컴포넌트의-라이프-사이클-메서드" style="position:relative;">컴포넌트의 라이프 사이클 메서드<a href="#%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8%EC%9D%98-%EB%9D%BC%EC%9D%B4%ED%94%84-%EC%82%AC%EC%9D%B4%ED%81%B4-%EB%A9%94%EC%84%9C%EB%93%9C" aria-label="컴포넌트의 라이프 사이클 메서드 permalink" class="custom-class after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<h2 id="spa가-뭔가요" style="position:relative;">SPA가 뭔가요?🔥<a href="#spa%EA%B0%80-%EB%AD%94%EA%B0%80%EC%9A%94" aria-label="spa가 뭔가요 permalink" class="custom-class after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<ul>
+<li>SPA의 단점</li>
+</ul>
+<h2 id="ssr이-뭔가요" style="position:relative;">SSR이 뭔가요<a href="#ssr%EC%9D%B4-%EB%AD%94%EA%B0%80%EC%9A%94" aria-label="ssr이 뭔가요 permalink" class="custom-class after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<h2 id="seo가-뭔가요" style="position:relative;">SEO가 뭔가요<a href="#seo%EA%B0%80-%EB%AD%94%EA%B0%80%EC%9A%94" aria-label="seo가 뭔가요 permalink" class="custom-class after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2></section></article><div class="blog-table"><div class="table-of-contents"><ul>
+<li>
+<p><a href="#%EB%A6%AC%EC%95%A1%ED%8A%B8-%ED%8C%A8%ED%82%A4%EC%A7%80-%EA%B5%AC%EC%A1%B0-v16120">리액트 패키지 구조 (v16.12.0)</a></p>
+<ul>
+<li><a href="#51-%EB%A6%AC%EC%95%A1%ED%8A%B8-%ED%8C%A8%ED%82%A4%EC%A7%80-%EA%B5%AC%EB%8F%99-%EC%88%9C%EC%84%9C">5.1 리액트 패키지 구동 순서</a></li>
+<li><a href="#52-%EA%B4%80%EB%A0%A8-%EC%9A%A9%EC%96%B4-%EC%A0%95%EB%A6%AC">5.2 관련 용어 정리</a></li>
+<li><a href="#53-vdom">5.3 VDOM</a></li>
+<li><a href="#54-react-element">5.4 React Element</a></li>
+<li><a href="#55-side-effect">5.5 Side Effect</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#%EB%A6%AC%EC%95%A1%ED%8A%B8-%ED%9B%85-%EB%8F%99%EC%9E%91-%EC%9B%90%EB%A6%AC">리액트 훅 동작 원리</a></p>
+<ul>
+<li><a href="#61-%EB%A6%AC%EC%95%A1%ED%8A%B8-%ED%9B%85-%EA%B5%AC%ED%98%84%EC%B2%B4">6.1 리액트 훅 구현체</a></li>
+<li><a href="#62-%EB%A6%AC%EC%95%A1%ED%8A%B8-%ED%9B%85-%EA%B5%AC%ED%98%84%EC%B2%B4-%EC%A3%BC%EC%9E%85">6.2 리액트 훅 구현체 주입</a></li>
+<li><a href="#63-%EB%A6%AC%EC%95%A1%ED%8A%B8-%ED%9B%85%EC%9D%80-%EC%96%B4%EB%96%BB%EA%B2%8C-%EC%83%9D%EC%84%B1%EB%90%98%EB%8A%94%EA%B0%80">6.3 리액트 훅은 어떻게 생성되는가</a></li>
+<li><a href="#64-%EB%A6%AC%EC%95%A1%ED%8A%B8-%ED%9B%85%EC%9D%80-%EC%96%B4%EB%96%BB%EA%B2%8C-%EC%83%81%ED%83%9C%EB%A5%BC-%EB%B3%80%EA%B2%BD%ED%95%98%EA%B3%A0-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8%EB%A5%BC-%EB%A6%AC%EB%9E%9C%EB%8D%94%EB%A7%81%ED%95%98%EB%8A%94%EA%B0%80">6.4 리액트 훅은 어떻게 상태를 변경하고 컴포넌트를 리랜더링하는가</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#%EB%A6%AC%EC%95%A1%ED%8A%B8%EB%A5%BC-%EC%99%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EB%82%98%EC%9A%94">리액트를 왜 사용하나요</a></p>
+</li>
+<li>
+<p><a href="#virtual-dom%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C-%EC%95%84%EB%82%98%EC%9A%94">Virtual Dom에 대해서 아나요</a></p>
+</li>
+<li>
+<p><a href="#%EB%8B%A4%EC%8B%9C-setstate%EC%9D%98-%EA%B2%BD%EC%9A%B0-%EB%8F%99%EA%B8%B0%EB%A1%9C-%EB%8F%99%EC%9E%91%ED%95%98%EB%82%98%EC%9A%94-%EB%B9%84%EB%8F%99%EA%B8%B0%EB%A1%9C-%EB%8F%99%EC%9E%91%ED%95%98%EB%82%98%EC%9A%94">(다시) setState의 경우 동기로 동작하나요 비동기로 동작하나요?</a></p>
+</li>
+<li>
+<p><a href="#%EB%8B%A4%EC%8B%9C-setstate%EA%B0%80-%EB%B9%84%EB%8F%99%EA%B8%B0-%EB%8F%99%EC%9E%91%EC%9D%84-%EC%B7%A8%ED%96%88%EC%9D%84-%EB%95%8C-%EC%96%BB%EC%9D%84-%EC%88%98-%EC%9E%88%EB%8A%94-%EC%9D%B4%EC%A0%90%EC%9D%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80%EC%9A%94">(다시) setState가 비동기 동작을 취했을 때 얻을 수 있는 이점은 무엇인가요</a></p>
+</li>
+<li>
+<p><a href="#usememo%EC%99%80-usecallback%EC%9D%98-%EC%B0%A8%EC%9D%B4%EA%B0%80-%EB%AD%94%EA%B0%80%EC%9A%94">useMemo와 useCallback의 차이가 뭔가요</a></p>
+</li>
+<li>
+<p><a href="#%EB%A6%AC%EB%8D%95%EC%8A%A4%EC%9D%98-%EA%B8%B0%EB%B3%B8-%EC%9B%90%EC%B9%99%EC%9D%80">리덕스의 기본 원칙은</a></p>
+</li>
+<li>
+<p><a href="#%EB%A6%AC%EB%8D%95%EC%8A%A4%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EC%8B%A0%EB%8B%A4%EA%B3%A0-%ED%95%98%EC%85%A8%EB%8A%94%EB%8D%B0-flux-%ED%8C%A8%ED%84%B4%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C-%EC%95%8C%EA%B3%A0-%EC%9E%88%EB%82%98%EC%9A%94">리덕스를 사용하신다고 하셨는데, Flux 패턴에 대해서 알고 있나요</a></p>
+</li>
+<li>
+<p><a href="#%EB%A6%AC%EB%93%80%EC%84%9C-%EB%82%B4%EB%B6%80%EC%97%90%EC%84%9C-%EB%B6%88%EB%B3%80%EC%84%B1%EC%9D%84-%EC%A7%80%ED%82%A4%EB%8A%94-%EC%9D%B4%EC%9C%A0%EB%8A%94-%EC%A0%84%EA%B0%9C-%EC%97%B0%EC%82%B0%EC%9E%90%EC%9D%98-%EB%8B%A8%EC%A0%90%EC%9D%84-%ED%95%B4%EA%B2%B0%ED%95%A0-%EC%88%98-%EC%9E%88%EB%8A%94-%EB%B0%A9%EB%B2%95">리듀서 내부에서 불변성을 지키는 이유는? 전개 연산자의 단점을 해결할 수 있는 방법</a></p>
+</li>
+<li>
+<p><a href="#%EB%A6%AC%EB%93%80%EC%84%9C-%EB%82%B4%EB%B6%80%EC%97%90%EC%84%9C-%EB%B6%88%EB%B3%80%EC%84%B1%EC%9D%84-%EC%9C%A0%EC%A7%80%ED%95%98%EA%B8%B0-%EC%9C%84%ED%95%B4-%EC%96%95%EC%9D%80-%EB%B3%B5%EC%82%AC%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%82%98%EC%9A%94-%EA%B9%8A%EC%9D%80-%EB%B3%B5%EC%82%AC%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%82%98%EC%9A%94">리듀서 내부에서 불변성을 유지하기 위해 얕은 복사를 사용하나요 깊은 복사를 사용하나요</a></p>
+</li>
+<li>
+<p><a href="#%EB%B3%B8%EC%9D%B8%EC%9D%B4-%EC%83%9D%EA%B0%81%ED%95%98%EB%8A%94-%EB%A6%AC%EB%8D%95%EC%8A%A4-thunk-%EC%99%80-saga%EC%9D%98-%EC%B0%A8%EC%9D%B4%EA%B0%80-%EB%AD%94%EA%B0%80%EC%9A%94">본인이 생각하는 리덕스 thunk 와 saga의 차이가 뭔가요</a></p>
+</li>
+<li>
+<p><a href="#%EB%A6%AC%EB%8D%95%EC%8A%A4-vs-%EB%A6%AC%EB%8D%95%EC%8A%A4toolkit-%EC%B0%A8%EC%9D%B4">리덕스 vs 리덕스toolkit 차이</a></p>
+</li>
+<li>
+<p><a href="#%EB%8D%94-react-18-%EC%8B%A0%EA%B8%B0%EB%8A%A5-%EC%95%8C%EC%95%84%EB%B3%B4%EA%B8%B0">(더) react 18 신기능 알아보기</a></p>
+</li>
+<li>
+<p><a href="#%EB%A6%AC%EC%95%A1%ED%8A%B8-%EC%82%AC%EC%9A%A9%EC%8B%9C%EC%97%90-%EB%B6%80%EC%88%98%ED%9A%A8%EA%B3%BC%EB%A1%9C-%EC%9D%B8%ED%95%B4-%EC%83%9D%EA%B8%B0%EB%8A%94-%EB%AC%B8%EC%A0%9C%EC%A0%90%EC%9D%B4-%EC%9E%88%EB%8B%A4%EB%A9%B4">리액트 사용시에 부수효과로 인해 생기는 문제점이 있다면</a></p>
+</li>
+<li>
+<p><a href="#%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8%EC%9D%98-%EB%9D%BC%EC%9D%B4%ED%94%84-%EC%82%AC%EC%9D%B4%ED%81%B4-%EB%A9%94%EC%84%9C%EB%93%9C">컴포넌트의 라이프 사이클 메서드</a></p>
+</li>
+<li>
+<p><a href="#spa%EA%B0%80-%EB%AD%94%EA%B0%80%EC%9A%94">SPA가 뭔가요?🔥</a></p>
+</li>
+<li>
+<p><a href="#ssr%EC%9D%B4-%EB%AD%94%EA%B0%80%EC%9A%94">SSR이 뭔가요</a></p>
+</li>
+<li>
+<p><a href="#seo%EA%B0%80-%EB%AD%94%EA%B0%80%EC%9A%94">SEO가 뭔가요</a></p>
+</li>
+</ul></div></div></div><hr/><div id="comment"></div></main><footer>© 2021, COPYRIGHT ALL RIGHT KSY8230<a href="https://www.gatsbyjs.com"></a></footer></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/javascript/2.react_list/";window.___webpackCompilationHash="d338af3bc7d4e1f6966a";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-afa68794cf9a69af341a.js"],"app":["/app-c154fc21242975beb867.js"],"component---src-pages-404-js":["/component---src-pages-404-js-0c66d2172856118fd382.js"],"component---src-pages-index-js":["/component---src-pages-index-js-ae6b18ca2fa1bb73ebc3.js"],"component---src-pages-using-typescript-tsx":["/component---src-pages-using-typescript-tsx-e500a6fb88c5bce65ce3.js"],"component---src-templates-blog-post-js":["/component---src-templates-blog-post-js-3eca40859e081028ea64.js"]};/*]]>*/</script><script src="/todayILearned/polyfill-afa68794cf9a69af341a.js" nomodule=""></script><script src="/todayILearned/app-c154fc21242975beb867.js" async=""></script><script src="/todayILearned/framework-21cdc04874840f845a1f.js" async=""></script><script src="/todayILearned/webpack-runtime-5ef15c4c61c54be2a2d4.js" async=""></script></body></html>
